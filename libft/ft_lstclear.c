@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xadabunu <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: xadabunu <xadabunu@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/12 17:44:50 by xadabunu          #+#    #+#             */
-/*   Updated: 2023/01/21 16:31:50 by xadabunu         ###   ########.fr       */
+/*   Created: 2022/09/27 15:47:42 by xadabunu          #+#    #+#             */
+/*   Updated: 2022/10/19 14:17:27 by xadabunu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <limits.h>
-#include "push_swap.h"
+#include "libft.h"
 
-int main(int argc, char **argv)
+void	ft_lstclear(t_list **lst)
 {
-	push_swap(argc, argv);
-	return (0);
+	t_list	*tmp;
+
+	if (!lst)
+		return ;
+	while (*lst)
+	{
+		tmp = (*lst)->next;
+		ft_lstdelone(*lst);
+		*lst = tmp;
+	}
 }

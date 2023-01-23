@@ -18,9 +18,9 @@ static int	ft_isspace(const char c)
 	|| c == '\f');
 }
 
-int	*ps_free(int *a)
+t_list	*ps_free(t_list *a)
 {
-	free(a);
+	ft_lstclear(&a);
 	return (NULL);
 }
 
@@ -85,4 +85,3 @@ int	ps_is_a_number(const char *str)
 		return (0);
 	return (1);
 }
-

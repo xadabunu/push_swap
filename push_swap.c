@@ -12,39 +12,36 @@
 
 #include "push_swap.h"
 
-static int	ps_has(int* a, int n, int size)
+static int	ps_has(t_list* a, int n)
 {
-	while (size >= 0)
+	while (a)
 	{
-		if (a[size] == n)
+		if (a->value == n)
 			return (1);
-		--size;
+		a = a->next;
 	}
 	return (0);
 }
 
-static int  *valid_argv(int argc, char **argv)
+static t_list  *valid_argv(int argc, char **argv)
 {
-    int i;
-    int *a;
-	int	n;
+    int		i;
+	int		n;
+    t_list	*a;
+	t_list	*temp;
 
-    if (argc < 2)
-        return (NULL);
     i = 1;
-    a = malloc(sizeof(*a) * argc - 1);
     while (i < argc)
     {
-		if (ps_is_a_number(argv[i]))
-		{
-			n = ps_atoi(argv[i]);
-			if (!ps_has(a, n, i - 2))
-				a[i - 1] = n;
-			else
-				return(ps_free(a));
-		}	
-		else
-			return(ps_free(a));	
+		if (!ps_is_a_number(argv[i]))
+			return (ps_free(a));	
+		n = ps_atoi(argv[i]);
+		if (ps_has(a, n))
+			return (ps_free(a));
+		temp = ft_lstnew(n);
+		if (!temp)
+			return (ps_free(a));
+		ft_lstadd_back(&a, temp);
 		++i;
     }
     return (a);
@@ -52,19 +49,26 @@ static int  *valid_argv(int argc, char **argv)
 
 #include <stdio.h>
 
-int push_swap(int argc, char **argv)
+void push_swap(int argc, char **argv)
 {
-    int *a;
-    //int *b;
+    t_list *a;
+    //t_list *b;
 
-    a = valid_argv(argc, argv);
-    if (!a)
-    {
-        write(2, "ERROR\n", 6);
-        exit(2);
-    }
-	for (int i = 0 ; i < argc  - 1; ++i)
-		printf("%d\n", a[i]);
-	free(a);
-	return (0);
+	if (argc > 1)
+	{
+		a = valid_argv(argc, argv);
+		if (!a)
+		{
+			write(2, "ERROR\n", 6);
+			exit(2);
+		}
+		//sort(a, b);
+		while (a)
+		{
+			printf("%d\n", a->value);
+			a = a->next;
+		}
+	}
+	ps_free(a);
+	//ps_free(b);
 }

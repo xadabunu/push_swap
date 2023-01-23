@@ -13,18 +13,14 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-typedef struct s_stack
-{
-
-}   t_stack;
-
 #include <stdlib.h>
 #include <limits.h>
 #include <unistd.h>
+#include "libft/libft.h"
 
-int	push_swap(int rgc, char **agrv);
+void	push_swap(int argc, char **agrv);
 long	ps_atoi(const char *nptr);
-int	ps_is_a_number(const char *str);
-int	*ps_free(int *a);
+int		ps_is_a_number(const char *str);
+t_list	*ps_free(t_list *a);
 
 #endif

@@ -14,7 +14,7 @@ SRCS	=	main.c \
 			ps_utils.c \
 			push_swap.c
 
-OBJS	=	${SRCS:.c.o}
+OBJS	=	${SRCS:.c=.o}
 
 NAME	=	push_swap.a
 

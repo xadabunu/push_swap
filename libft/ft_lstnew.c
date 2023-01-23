@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xadabunu <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: xadabunu <xadabunu@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/12 17:44:50 by xadabunu          #+#    #+#             */
-/*   Updated: 2023/01/21 16:31:50 by xadabunu         ###   ########.fr       */
+/*   Created: 2022/09/27 12:11:07 by xadabunu          #+#    #+#             */
+/*   Updated: 2022/09/27 12:11:09 by xadabunu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <limits.h>
-#include "push_swap.h"
+#include "libft.h"
 
-int main(int argc, char **argv)
+t_list	*ft_lstnew(int value)
 {
-	push_swap(argc, argv);
-	return (0);
+	t_list	*new;
+
+	new = malloc(sizeof(*new));
+	if (!new)
+		return (NULL);
+	new->value = value;
+	new->next = NULL;
+	return (new);
 }

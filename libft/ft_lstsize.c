@@ -1,21 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xadabunu <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: xadabunu <xadabunu@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/12 17:44:50 by xadabunu          #+#    #+#             */
-/*   Updated: 2023/01/21 16:31:50 by xadabunu         ###   ########.fr       */
+/*   Created: 2022/09/27 13:11:23 by xadabunu          #+#    #+#             */
+/*   Updated: 2022/10/19 14:25:52 by xadabunu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <limits.h>
-#include "push_swap.h"
+#include "libft.h"
 
-int main(int argc, char **argv)
+int	ft_lstsize(t_list *lst)
 {
-	push_swap(argc, argv);
-	return (0);
+	int	ctr;
+
+	if (!lst)
+		return (0);
+	ctr = 1;
+	while (lst->next)
+	{
+		++ctr;
+		lst = lst->next;
+	}
+	return (ctr);
 }
