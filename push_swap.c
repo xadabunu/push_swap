@@ -23,6 +23,8 @@ static int	ps_has(t_list* a, int n)
 	return (0);
 }
 
+#include <stdio.h>
+
 static t_list  *valid_argv(int argc, char **argv)
 {
     int		i;
@@ -31,10 +33,11 @@ static t_list  *valid_argv(int argc, char **argv)
 	t_list	*temp;
 
     i = 1;
+	a = NULL;
     while (i < argc)
     {
 		if (!ps_is_a_number(argv[i]))
-			return (ps_free(a));	
+			return (ps_free(a));
 		n = ps_atoi(argv[i]);
 		if (ps_has(a, n))
 			return (ps_free(a));
@@ -47,13 +50,12 @@ static t_list  *valid_argv(int argc, char **argv)
     return (a);
 }
 
-#include <stdio.h>
-
 void push_swap(int argc, char **argv)
 {
     t_list *a;
-    //t_list *b;
+    t_list *b;
 
+	b = NULL;
 	if (argc > 1)
 	{
 		a = valid_argv(argc, argv);
@@ -62,13 +64,31 @@ void push_swap(int argc, char **argv)
 			write(2, "ERROR\n", 6);
 			exit(2);
 		}
-		//sort(a, b);
-		while (a)
+		// if (ft_lstsize(a) > 1)
+		// 	sort(a, b);
+		t_list	*read = a;
+		while (read)
 		{
-			printf("%d\n", a->value);
-			a = a->next;
+			printf("%d\n", read->value);
+			read = read->next;
 		}
+		printf("========\n");
+		pb(&a, &b);
+		read = a;
+		while (read)
+		{
+			printf("%d\n", read->value);
+			read = read->next;
+		}
+		read = b;
+		printf("========\n");
+		while (read)
+		{
+			printf("%d\n", read->value);
+			read = read->next;
+		}
+		ps_free(a);
+		//ps_free(b);
 	}
-	ps_free(a);
-	//ps_free(b);
+
 }
